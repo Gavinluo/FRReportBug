@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "FR2022ReportBug": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

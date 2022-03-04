@@ -7,6 +7,11 @@ namespace FR2022ReportBug
     {
         static void Main(string[] args)
         {
+            TestNumberChinese();
+        }
+
+        public static void TestNumberChinese()
+        {
             var fReport = new FastReport.Report();
             fReport.Report.Load("NumberChineseDemo.frx");
             DataSet ds = new DataSet("Table1");

@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="NumberChineseDemo - 复制.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="NumberChineseDemo.frx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

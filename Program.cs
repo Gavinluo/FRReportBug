@@ -7,7 +7,49 @@ namespace FR2022ReportBug
     {
         static void Main(string[] args)
         {
-            BarcodeTextDisplayIncorrectly();
+            TextLostWordsWithBlodStyle();
+        }
+        /// <summary>
+        /// https://support.fast-report.com/tickets/681008
+        /// </summary>
+        public static void TextLostWordsWithBlodStyle()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("TextLostWordsWithBlodStyle.frx");
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.Compressed = true;
+            exportPdf.Background = false;
+            exportPdf.PrintOptimized = false;
+            exportPdf.EmbeddingFonts = true;
+            exportPdf.OpenAfterExport = false;
+            string filename = $"A-TextLostWordsWithBlodStyle-{DateTime.Now.ToString("HH-mm-ss")}.pdf";
+            fReport.Export(exportPdf, filename);
+        }
+        /// <summary>
+        /// https://support.fast-report.com/tickets/681003
+        /// </summary>
+        public static void ImageDisplayIncorrectly()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("ImageDisplayIncorrectly.frx");
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.Compressed = true;
+            exportPdf.Background = false;
+            exportPdf.PrintOptimized = false;
+            exportPdf.EmbeddingFonts = true;
+            exportPdf.OpenAfterExport = false;
+            string filename = $"A-ImageDisplayIncorrectly-{DateTime.Now.ToString("HH-mm-ss")}.pdf";
+            fReport.Export(exportPdf, filename);
+            var exportExcel = new FastReport.Export.OoXML.Excel2007Export();
+            exportExcel.SetReport(fReport);
+            exportExcel.PrintOptimized = false;
+            exportExcel.OpenAfterExport = false;
+            filename = $"A-ImageDisplayIncorrectly-{DateTime.Now.ToString("HH-mm-ss")}.xls";
+            fReport.Export(exportExcel, filename);
         }
         /// <summary>
         /// https://support.fast-report.com/tickets/680985

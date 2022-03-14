@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/02/2016 16:53:14" ReportInfo.Modified="03/14/2022 16:11:07" ReportInfo.CreatorVersion="2021.4.12.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" PaperWidth="200" PaperHeight="60" FirstPageSource="15" OtherPagesSource="15" LastPageSource="15" Guides="822.15" Watermark.Font="宋体, 60pt">
+    <DataBand Name="Data1" Width="680.4" Height="103.95">
+      <BarcodeObject Name="Barcode2" Left="132.3" Top="28.35" Width="401.25" Height="47.25" Text="BD01266819 YFB01266819-200826001" AllowExpressions="true" Barcode="Code128" Barcode.AutoEncode="true"/>
+    </DataBand>
+  </ReportPage>
+</Report>

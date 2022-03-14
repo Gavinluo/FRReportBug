@@ -7,7 +7,21 @@ namespace FR2022ReportBug
     {
         static void Main(string[] args)
         {
-            TestRichTextDisplayIncorrectly();
+            BarcodeTextDisplayIncorrectly();
+        }
+        /// <summary>
+        /// https://support.fast-report.com/tickets/680985
+        /// </summary>
+        public static void BarcodeTextDisplayIncorrectly()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("BarcodeTextBug.frx");
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.OpenAfterExport = false;
+            string filename = $"A-BarcodeTextBug-{DateTime.Now.ToString("HH-mm-ss")}.pdf";
+            fReport.Export(exportPdf, filename);
         }
         /// <summary>
         /// https://support.fast-report.com/tickets/680982

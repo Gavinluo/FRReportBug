@@ -7,7 +7,30 @@ namespace FR2022ReportBug
     {
         static void Main(string[] args)
         {
-            TestDateFormat();
+            TestRichTextDisplayIncorrectly();
+        }
+        /// <summary>
+        /// https://support.fast-report.com/tickets/680982
+        /// </summary>
+        public static void TestRichTextDisplayIncorrectly()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("RichTextDemo.frx");
+            DataSet ds = new DataSet("Table1");
+            DataTable dt = new DataTable("Table1");
+            dt.Columns.Add("CREATED_DATE", typeof(DateTime));
+            dt.Rows.Add(DateTime.Now);
+            ds.Tables.Add(dt);
+            fReport.RegisterData(ds);
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.Compressed = false;
+            exportPdf.Background = false;
+            exportPdf.PrintOptimized = false;
+            exportPdf.OpenAfterExport = false;
+            string filename = DateTime.Now.ToString("MM-dd-HH-mm-ss") + ".pdf";
+            fReport.Export(exportPdf, filename);
         }
         /// <summary>
         /// https://support.fast-report.com/tickets/680360

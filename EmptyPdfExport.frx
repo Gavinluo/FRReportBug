@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="11/30/2021 10:51:50" ReportInfo.Modified="04/21/2022 12:19:50" ReportInfo.CreatorVersion="2019.3.26.0">
+	<Dictionary>
+		<TableDataSource Name="WAREHOUSE" ReferenceName="Data.Table1" DataType="System.Int32" Enabled="true">
+			<Column Name="WH_GID" DataType="System.String"/>
+			<Column Name="WH_ID" DataType="System.String"/>
+			<Column Name="WH_NAME" DataType="System.String"/>
+			<Column Name="WH_DESCRIPTION" DataType="System.String"/>
+			<Column Name="TTID" DataType="System.String"/>
+		</TableDataSource>
+		<TableDataSource Name="receipt" ReferenceName="Data.Table2" DataType="System.Int32" Enabled="true">
+			<Column Name="SKUID" DataType="System.String"/>
+			<Column Name="SKUNAME" DataType="System.String"/>
+			<Column Name="SOP" DataType="System.String"/>
+			<Column Name="IN_FACTORY_LOT" DataType="System.String"/>
+			<Column Name="FACTORY_LOT" DataType="System.String"/>
+			<Column Name="CASE_ID" DataType="System.String"/>
+			<Column Name="PACK_NO" DataType="System.String"/>
+			<Column Name="Column" Alias="QRCODE" DataType="System.String" Calculated="true" Expression=""/>
+		</TableDataSource>
+	</Dictionary>
+	<ReportPage Name="Page1" PaperWidth="70" PaperHeight="40" LeftMargin="0" TopMargin="0" RightMargin="0" BottomMargin="0" FirstPageSource="15" OtherPagesSource="15" Guides="122.85,122.85,122.85" Watermark.Font="宋体, 60pt">
+		<DataBand Name="Data1" Width="264.6" Height="151.2" DataSource="receipt">
+			<TextObject Name="Text1" Left="9.45" Top="9.45" Width="56.7" Height="9.45" Text="SOP编码:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text2" Left="66.15" Top="9.45" Width="94.5" Height="9.45" Text="[receipt.SOP]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text3" Left="85.05" Top="18.9" Width="94.5" Height="18.9" Text="箱码标签" Padding="0, 0, 0, 0" HorzAlign="Center" VertAlign="Center" Font="宋体, 9pt, style=Bold"/>
+			<TextObject Name="Text4" Left="9.45" Top="37.8" Width="56.7" Height="9.45" Text="物料代码:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text5" Left="66.15" Top="37.8" Width="94.5" Height="9.45" Text="[receipt.SKUID]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text6" Left="9.45" Top="56.7" Width="56.7" Height="9.45" Text="物料名称:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text7" Left="9.45" Top="75.6" Width="56.7" Height="9.45" Text="进厂批号:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text8" Left="9.45" Top="94.5" Width="56.7" Height="9.45" Text="厂家批号:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text10" Left="9.45" Top="132.3" Width="56.7" Height="9.45" Text="包装规格:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text11" Left="66.15" Top="56.7" Width="94.5" Height="9.45" Text="[receipt.SKUNAME]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text12" Left="66.15" Top="75.6" Width="94.5" Height="9.45" Text="[receipt.IN_FACTORY_LOT]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text13" Left="66.15" Top="94.5" Width="94.5" Height="9.45" Text="[receipt.FACTORY_LOT]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text14" Left="66.15" Top="113.4" Width="141.75" Height="9.45" Text="[receipt.CASE_ID]" Font="宋体, 6.75pt"/>
+			<TextObject Name="Text15" Left="66.15" Top="132.3" Width="141.75" Height="9.45" Text="[receipt.PACK_NO]" Font="宋体, 6.75pt"/>
+			<BarcodeObject Name="Barcode1" Left="170.1" Top="28.35" Width="94.5" Height="94.5" BeforePrintEvent="Barcode1_BeforePrint" AutoSize="false" DataColumn="receipt.QRCODE" Text="s" ShowText="false" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+			<TextObject Name="Text16" Left="9.45" Top="113.4" Width="56.7" Height="9.45" Text="箱号:" HorzAlign="Center" VertAlign="Center" Font="宋体, 6.75pt"/>
+		</DataBand>
+	</ReportPage>
+</Report>

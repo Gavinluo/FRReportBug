@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.IO;
 
 namespace FR2022ReportBug
 {
@@ -7,7 +8,66 @@ namespace FR2022ReportBug
     {
         static void Main(string[] args)
         {
-            TextLostWordsWithBlodStyle();
+            ExportWithCompressCanNotCopy();
+        }
+        /// <summary>
+        /// https://support.fast-report.com/tickets/698018
+        /// </summary>
+        public static void ExportWithCompressCanNotCopy()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("TextLostWordsWithBlodStyle.frx");
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.Compressed = false;
+            exportPdf.Background = false;
+            exportPdf.PrintOptimized = false;
+            exportPdf.EmbeddingFonts = true;
+            exportPdf.OpenAfterExport = false;
+            string filename = $"A-TextLostWordsWithBlodStyle-{DateTime.Now.ToString("HH-mm-ss")}.pdf";
+            fReport.Export(exportPdf, filename);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void ExportEmptyPdfError()
+        {
+            var fReport = new FastReport.Report();
+            fReport.Report.Load("EmptyPdfExport.frx");
+            DataSet ds = new DataSet("Table1");
+            DataTable dt = new DataTable("Table1");
+            DataTable dt2 = new DataTable("Table2");
+            dt.Columns.Add("WH_GID", typeof(String));
+            dt.Columns.Add("WH_ID", typeof(String));
+            dt.Columns.Add("WH_NAME", typeof(String));
+            dt.Columns.Add("WH_DESCRIPTION", typeof(String));
+            dt.Columns.Add("TTID", typeof(String));
+            dt.Rows.Add("A", "B", "C", "D", "E");
+            dt2.Columns.Add("SKUID", typeof(String));
+            dt2.Columns.Add("SKUNAME", typeof(String));
+            dt2.Columns.Add("SOP", typeof(String));
+            dt2.Columns.Add("IN_FACTORY_LOT", typeof(String));
+            dt2.Columns.Add("FACTORY_LOT", typeof(String));
+            dt2.Columns.Add("CASE_ID", typeof(String));
+            dt2.Columns.Add("PACK_NO", typeof(String));
+            dt2.Columns.Add("Column", typeof(String));
+            ds.Tables.Add(dt);
+            ds.Tables.Add(dt2);
+            fReport.RegisterData(ds);
+            fReport.Prepare();
+            var exportPdf = new FastReport.Export.Pdf.PDFExport();
+            exportPdf.SetReport(fReport);
+            exportPdf.Compressed = false;
+            exportPdf.Background = false;
+            exportPdf.PrintOptimized = true;
+            exportPdf.OpenAfterExport = false;
+            using (var stream = new MemoryStream())
+            {
+                fReport.Export(exportPdf, stream);
+            }
         }
         /// <summary>
         /// https://support.fast-report.com/tickets/681008

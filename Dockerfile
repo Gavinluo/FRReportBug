@@ -1,6 +1,6 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
-FROM hub.360scm.cn/library/aspnet:3.1-libgdiplus-font AS base
+FROM hub.360scm.com/library/aspnet-qt:3.1-font AS base
 WORKDIR /app
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
